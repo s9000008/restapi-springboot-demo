@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>This is a title</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <div>
+    <form method="post" action="http://localhost:8080/api/v1/student">
+    	<input type="number" name="id" value=""/>
+    	<input type="text" name="name" value=""/>
+    	<input type="email" name="email" value=""/>
+    	<input type="date" name="dob" value=""/>
+    	<input type="button" id="submitBtn"/>
+    	
+    </form>
+    </div>
+    <script>
+    $("#submitBtn").click(function(){
+		$.ajax({
+		  url:$("form").attr("action"),
+		  method:"POST",
+		  contentType:"application/json; charset=utf-8",
+		  dataType:"json",
+		  data:{"id":$("input[name='id']").val(),
+		  	"name":$("input[name='name']").val(),
+		  	"email":$("input[name='email']").val(),
+		  	"date":$("input[name='date']").val()
+		  },
+		  success:function(res){console.log(res)},
+		  error:function(err){console.log(err)},
+		});
+    })
+    </script>
+  </body>
+</html>
